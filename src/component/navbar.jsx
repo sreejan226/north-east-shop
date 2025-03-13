@@ -5,6 +5,13 @@ import { FaDumbbell } from "react-icons/fa";
 import { MdMenu } from "react-icons/md";
 import { CiSearch } from "react-icons/ci";
 import { PiShoppingCartThin } from "react-icons/pi";
+import {
+  SignedIn,
+  SignedOut,
+  SignInButton,
+  SignUpButton,
+  UserButton,
+} from "@clerk/nextjs";
 
 function Navbar() {
   return (
@@ -24,27 +31,39 @@ function Navbar() {
           <div className="hidden md:block">
             <ul className="flex items-center gap-6 text-gray-600">
               {NavBarMenu.map((item) => {
-                  return <li key={item.id}> 
-                      <a href={item.link} className="inline-block py-1 px-3 
-                        hover:text-amber-400  font-semibold">{item.title}</a>
-                  </li>;
+                return (
+                  <li key={item.id}>
+                    <a
+                      href={item.link}
+                      className="inline-block py-1 px-3 
+                        hover:text-amber-400  font-semibold"
+                    >
+                      {item.title}
+                    </a>
+                  </li>
+                );
               })}
             </ul>
           </div>
 
-                  {/* icons section */}
-                  
-                  <button className="text-2xl hover:text-white hover:rounded-full hover:bg-amber-400 p-2 duration-200">
-                      <CiSearch/>
-                  </button>
+          {/* icons section */}
+          <div className="flex gap-4">
+            <button className="text-2xl hover:text-white hover:rounded-full hover:bg-amber-400 p-2 duration-200">
+              <CiSearch />
+            </button>
 
-                  <button className="text-2xl hover:text-white hover:rounded-full hover:bg-amber-400 p-2 duration-200">
-                      <PiShoppingCartThin/>
-                  </button>
+            <button className="text-2xl hover:text-white hover:rounded-full hover:bg-amber-400 p-2 duration-200">
+              <PiShoppingCartThin />
+            </button>
 
-                  <button className="text-2xl hover:text-white hover:bg-amber-400 p-2 duration-200 border border-amber-400 rounded-2xl text-amber-400">
-                      Login
-                  </button>
+            <SignedOut>
+              <SignInButton />
+              <SignUpButton />
+            </SignedOut>
+            <SignedIn>
+              <UserButton />
+            </SignedIn>
+          </div>
         </div>
       </nav>
     </>
